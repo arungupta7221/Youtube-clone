@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { YOUTUBE_API } from '../utils/constant'
 import VideoCard from './VideoCard'
+import { Link, useDispatch } from 'react-router-dom'
 
 const VideoContainer = () => {
   const [videos, setVideos] = useState([])
@@ -16,7 +17,11 @@ const VideoContainer = () => {
   return (
     <div className="flex flex-wrap">
       {videos.map((vid) => {
-        return <VideoCard key={vid.id} info={vid} />
+        return (
+          <Link key={vid.id} to={'/watch?v=' + vid.id}>
+            <VideoCard info={vid} />
+          </Link>
+        )
       })}
     </div>
   )
